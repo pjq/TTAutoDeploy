@@ -79,3 +79,49 @@
 
 ###IM_SERVER与IM_DB_PROXY架构图如下:
 ![](https://github.com/mogutt/TTServer/blob/master/docs/pics/server.png)
+
+
+
+###Setup note
+1. Need install development tools
+sudo  yum groupinstall 'Development Tools’
+
+sudo yum install git
+ git clone https://github.com/pjq/TTAutoDeploy.git 
+ cd TTAutoDeploy/
+ cd TT/
+sudo  yum install vim
+
+sudo  yum groupinstall 'Development Tools’
+sudo yum install gcc kernel-devel
+
+2. Compile redis, need remalloc and use the latest version 2.8.17
+
+Add the EPEL repo:
+sudo wget http://dl.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm
+sudo rpm -Uvh epel-release-6*.rpm
+sudo yum install jemalloc-devel
+
+vim redis/setup.sh
+changet to 2.8.17
+
+cd redis/redis-2.8.13
+cd deps/
+sudo make hiredis lua jemalloc linenoise
+cd ..
+sudo make all
+cd ../..
+
+
+3. Install percona, need change the version to 56.5.6.21-rel69.0, and install libaio
+sudo yum install libaio
+http://www.percona.com/downloads/Percona-Server-5.6/LATEST/binary/redhat/6/x86_64/
+
+
+sudo yum install libuuid-devel
+install maven
+wget http://repos.fedorapeople.org/repos/dchen/apache-maven/epel-apache-maven.repo -O /etc/yum.repos.d/epel-apache-maven.repo
+yum install apache-maven
+
+
+sudo ./setup.sh install
