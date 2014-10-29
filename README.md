@@ -67,6 +67,9 @@
 	"强烈建议"选择一台未安装过的NGINX,PHP,MySQL,JDK,REDIS,并且OS为CentOS 6.X,在安装之前可以先执行
 	"setup.sh check"命令进行上述环境的检查。检查通过后对各个模块进行一些配置文件的设置,其中主要设置
 	的为IM_SERVER中的几个服务器地址设置,设置完成后运行"setup.sh install"
+	
+	安装redis时需要编译源码,"/bin/sh: cc: command not found"
+	 yum install gcc kernel-devel
 
 ###模块部署:
 	TeamTalk的各模块支持安装到不同的服务器上,所以部署可以根据自己的需要进行模块安装,主要修改的地方即为
