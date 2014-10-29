@@ -83,6 +83,7 @@
 
 
 ###Setup note
+```
 1. Need install development tools
 sudo  yum groupinstall 'Development Tools’
 
@@ -125,3 +126,4 @@ yum install apache-maven
 
 
 sudo ./setup.sh install
+```
