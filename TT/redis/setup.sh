@@ -5,7 +5,7 @@
 
 # setup redis
 export MAKE=make
-REDIS=redis-2.8.13
+REDIS=redis-2.8.17
 REDIS_DOWNLOAD_PATH=http://download.redis.io/releases/$REDIS.tar.gz
 REDIS_CONF_PATH=/usr/local/etc
 REDIS_CONF=redis.conf
@@ -89,6 +89,7 @@ run_redis() {
 	
 	
 
+	echo $REDIS_SERVER_PATH/$REDIS_SERVER $REDIS_CONF_PATH/$REDIS_CONF
 	$REDIS_SERVER_PATH/$REDIS_SERVER $REDIS_CONF_PATH/$REDIS_CONF
 	if [ $? -eq 0 ]; then
 		echo "start redis successed."

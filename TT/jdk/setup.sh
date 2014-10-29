@@ -6,7 +6,7 @@
 # setup jdk
 
 
-JDK=jdk-7u67-linux-x64
+JDK=jdk-7u71-linux-x64
 
 print_hello(){
 	echo "==========================================="
@@ -43,7 +43,7 @@ check_jdk() {
 	javac -version
 	if [[ $? = 0 ]]; then
 		echo "Error: JDK has installed, stop install jdk"
-		exit 1
+		exit 0
 	else
 		echo "jdk has not installed, need to install jdk"	
 	fi
