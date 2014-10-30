@@ -67,6 +67,9 @@
 	"强烈建议"选择一台未安装过的NGINX,PHP,MySQL,JDK,REDIS,并且OS为CentOS 6.X,在安装之前可以先执行
 	"setup.sh check"命令进行上述环境的检查。检查通过后对各个模块进行一些配置文件的设置,其中主要设置
 	的为IM_SERVER中的几个服务器地址设置,设置完成后运行"setup.sh install"
+	
+	安装redis时需要编译源码,"/bin/sh: cc: command not found"
+	 yum install gcc kernel-devel
 
 ###模块部署:
 	TeamTalk的各模块支持安装到不同的服务器上,所以部署可以根据自己的需要进行模块安装,主要修改的地方即为
@@ -76,3 +79,51 @@
 
 ###IM_SERVER与IM_DB_PROXY架构图如下:
 ![](https://github.com/mogutt/TTServer/blob/master/docs/pics/server.png)
+
+
+
+###Setup note
+```
+1. Need install development tools
+sudo  yum groupinstall 'Development Tools’
+
+sudo yum install git
+ git clone https://github.com/pjq/TTAutoDeploy.git 
+ cd TTAutoDeploy/
+ cd TT/
+sudo  yum install vim
+
+sudo  yum groupinstall 'Development Tools’
+sudo yum install gcc kernel-devel
+
+2. Compile redis, need remalloc and use the latest version 2.8.17
+
+Add the EPEL repo:
+sudo wget http://dl.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm
+sudo rpm -Uvh epel-release-6*.rpm
+sudo yum install jemalloc-devel
+
+vim redis/setup.sh
+changet to 2.8.17
+
+cd redis/redis-2.8.13
+cd deps/
+sudo make hiredis lua jemalloc linenoise
+cd ..
+sudo make all
+cd ../..
+
+
+3. Install percona, need change the version to 56.5.6.21-rel69.0, and install libaio
+sudo yum install libaio
+http://www.percona.com/downloads/Percona-Server-5.6/LATEST/binary/redhat/6/x86_64/
+
+
+sudo yum install libuuid-devel
+install maven
+wget http://repos.fedorapeople.org/repos/dchen/apache-maven/epel-apache-maven.repo -O /etc/yum.repos.d/epel-apache-maven.repo
+yum install apache-maven
+
+
+sudo ./setup.sh install
+```
